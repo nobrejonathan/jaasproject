@@ -1,0 +1,10 @@
+br\ucb\talp\model\enums\Role.class
+br\com\talp\controller\managedbeans\MenuMB.class
+br\com\talp\controller\managedbeans\UserMB.class
+br\com\talp\controller\managedbeans\AdminMB.class
+br\ucb\talp\model\converter\RoleConverter.class
+br\ucb\talp\model\dao\UserDAO.class
+br\ucb\talp\model\lazy\LazyUserDataModel.class
+br\ucb\talp\model\User.class
+br\ucb\talp\model\User_.class
+br\ucb\talp\model\dao\DAO.class

@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml" >
+
+    <ui:define name="head">
+        <title>Admin Context</title>
+    </ui:define>
+
+    <ui:define name="center">
+        <h:form id="formLogin" >
+
+            <h:panelGrid id="gridLogin" columns="3" cellspacing="5" >
+                <p:outputLabel value="Nome: " />
+                <p:inputText id="userName" placeholder="User name" value="#{adminMB.user.name}"  required="true" requiredMessage="Campo Obrigatório" validatorMessage="Nome inválido!" />
+                <p:message for="userName" />
+
+                <p:outputLabel value="Email " />
+                <p:inputText id="userEmail" placeholder="User email" value="#{adminMB.user.email}" maxlength="100" required="true" requiredMessage="Campo Obrigatório" />
+                <p:message for="userEmail" />
+
+                <p:outputLabel value="Senha " />
+                <p:password id="userPassword" placeholder="User password" value="#{adminMB.user.password}" maxlength="130" required="true" requiredMessage="Campo Obrigatório" feedback="true" inline="true"/>
+                <p:message for="userPassword" />
+
+                <p:outputLabel value="Grupo: " />
+                <p:selectOneListbox id="useRole" value="#{adminMB.user.role}" required="true" requiredMessage="Campo Obrigatório" converter="RoleConverter">
+                    <f:selectItems value="#{adminMB.rolesEnum}" var="role" itemLabel="#{role.role}" itemValue="#{role}" />
+                </p:selectOneListbox>
+                <p:message for="useRole" />
+
+                <f:facet name="footer" >
+                    <h:panelGroup style="display: block; text-align: left">
+                        <p:commandButton action="#{adminMB.saveUser()}" value="Salvar"  update="gridLogin,:userTableForm:userTable" styleClass="ui-priority-primary"/>
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+
+        </h:form>
+
+        <br/>
+
+        <h:form id="userTableForm">
+
+            <p:dataTable id="userTable" var="user" value="#{adminMB.lazyUser}" paginator="true" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="10,15,20,25,30,45,50" rows="10" selectionMode="single" selection="#{adminMB.selectedUser}" lazy="true">
+                
+                <p:ajax event="rowSelect" update=":userTableForm:userDetail" oncomplete="PF('userDialog').show()" />
+                
+                <f:facet name="header">Usuários Cadastrados</f:facet>
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{user.id}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.name}" />
+                </p:column>
+                
+
+                <p:column headerText="Email">
+                    <h:outputText value="#{user.email}" />
+                </p:column>
+
+                <p:column headerText="Grupo">
+                    <h:outputText value="#{user.role}" />
+                </p:column>
+                
+                <p:column headerText="Exluir" width="10%">
+                    <p:commandButton immediate="true" ajax="false" action="#{adminMB.delete(user)}" value="Excluir" update=":userTableForm:userTable"/>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dialog modal="true" appendTo="@(body)" header="Atualizar Dados do Usuário" widgetVar="userDialog" showEffect="fade" hideEffect="fade" resizable="false" >
+
+                <h:panelGrid id="userDetail" columns="3" cellspacing="5" >
+                    <p:outputLabel value="Nome: " />
+                    <p:inputText id="userName" placeholder="User name" value="#{adminMB.selectedUser.name}"  required="true" requiredMessage="Campo Obrigatório" validatorMessage="Nome inválido!" />
+                    <p:message for="userName" />
+
+                    <p:outputLabel value="Email " />
+                    <p:inputText id="userEmail" placeholder="User email" value="#{adminMB.selectedUser.email}" maxlength="100" required="true" requiredMessage="Campo Obrigatório" />
+                    <p:message for="userEmail" />
+
+                    <p:outputLabel value="Senha " />
+                    <p:password id="userPassword" placeholder="User password" value="#{adminMB.selectedUser.password}" maxlength="130" required="true" requiredMessage="Campo Obrigatório" feedback="true" inline="true"/>
+                    <p:message for="userPassword" />
+
+                    <p:outputLabel value="Grupo: " />
+                    <p:selectOneListbox id="useRole" value="#{adminMB.selectedUser.role}" required="true" requiredMessage="Campo Obrigatório" converter="RoleConverter">
+                        <f:selectItems value="#{adminMB.rolesEnum}" var="role" itemLabel="#{role.role}" itemValue="#{role}" />
+                    </p:selectOneListbox>
+                    <p:message for="useRole" />
+
+                    <f:facet name="footer" >
+                        <h:panelGroup style="display: block; text-align: center">
+                            <p:commandButton ajax="false" action="#{adminMB.updateUser()}" value="Atualizar" />
+                        </h:panelGroup>
+                    </f:facet>
+                </h:panelGrid>
+
+            </p:dialog>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
