@@ -5,7 +5,7 @@
  */
 package br.ucb.talp.model.dao;
 
-import br.ucb.talp.model.User;
+import br.ucb.talp.model.beans.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,12 +30,13 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public void save(User entity) {
+        entity.setEnabled(true);
         getEntityManager().persist(entity);
     }
 
     @Override
     public User update(User entity) {
-        return getEntityManager().merge(entity);
+        return getEntityManager(). merge(entity);
     }
 
     @Override

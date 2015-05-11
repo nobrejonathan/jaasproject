@@ -17,7 +17,7 @@
         <h:body>
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="40" resizable="false" closable="true" collapsible="true" >
-                    <p:outputLabel value="Projeto Exemplo JAAS" />
+                    <p:outputLabel value="Projeto Exemplo JAAS - Username: #{request.userPrincipal.name}" />
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="200" header="Menu Principal" collapsible="true">

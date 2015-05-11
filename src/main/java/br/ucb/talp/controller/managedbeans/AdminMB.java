@@ -5,7 +5,7 @@
  */
 package br.ucb.talp.controller.managedbeans;
 
-import br.ucb.talp.model.User;
+import br.ucb.talp.model.beans.User;
 import br.ucb.talp.model.dao.UserDAO;
 import br.ucb.talp.model.enums.Role;
 import br.ucb.talp.model.lazy.LazyUserDataModel;
@@ -41,6 +41,7 @@ public class AdminMB implements Serializable {
     
     @PostConstruct
     public void init() {
+        
         setUser(new User());
         setSelectedUser(new User());
         
@@ -116,8 +117,8 @@ public class AdminMB implements Serializable {
     }
     
     private void createInitialUsers() {
-        User admin = new User("Jonathan Nobre", "nobre.jonathan@catolica.edu.br", "iamgroot", Role.ADMIN);
-        User user = new User("Jeysel Martins", "jeyselmartins@gmail.com", "masterofjava", Role.USER);
+        User admin = new User("Jonathan Nobre", "nobre.jonathan@catolica.edu.br", "buymeacoffe", Role.ROLE_ADMIN);
+        User user = new User("Jeysel Martins", "jeyselmartins@gmail.com", "facanacaveira", Role.ROLE_USER);
         
         getDao().save(admin);
         Logger.getLogger(getClass().getName()).log(Level.INFO, "Criando usuário: " + admin.toString());

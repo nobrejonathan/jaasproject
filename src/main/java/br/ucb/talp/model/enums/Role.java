@@ -10,8 +10,8 @@ package br.ucb.talp.model.enums;
  * @author Jonathan
  */
 public enum Role {
-    ADMIN("Admin"),
-    USER("User");
+    ROLE_ADMIN("ROLE_ADMIN"),
+    ROLE_USER("ROLE_USER");
     
     private String role;
 

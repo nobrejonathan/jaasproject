@@ -5,7 +5,7 @@
  */
 package br.ucb.talp.controller.managedbeans;
 
-import br.ucb.talp.model.User;
+import br.ucb.talp.model.beans.User;
 import br.ucb.talp.model.dao.UserDAO;
 import java.io.Serializable;
 import java.util.List;

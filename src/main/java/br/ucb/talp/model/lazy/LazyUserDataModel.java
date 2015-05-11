@@ -5,7 +5,7 @@
  */
 package br.ucb.talp.model.lazy;
 
-import br.ucb.talp.model.User;
+import br.ucb.talp.model.beans.User;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

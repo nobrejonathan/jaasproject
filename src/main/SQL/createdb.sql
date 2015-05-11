@@ -1,2 +1,1 @@
 CREATE DATABASE jaas;
-USE jaas;
