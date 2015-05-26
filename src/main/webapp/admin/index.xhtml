@@ -97,7 +97,7 @@
 
                     <f:facet name="footer" >
                         <h:panelGroup style="display: block; text-align: center">
-                            <p:commandButton ajax="false" action="#{adminMB.updateUser()}" value="Atualizar" update=":userTableForm:userTable" />
+                            <p:commandButton immediate="true" ajax="false" action="#{adminMB.updateUser()}" value="Atualizar" update=":userTableForm:userTable" />
                         </h:panelGroup>
                     </f:facet>
                 </h:panelGrid>

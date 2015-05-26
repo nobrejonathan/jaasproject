@@ -65,9 +65,10 @@ public class AdminMB implements Serializable {
         return null;
     }
     
-    public void updateUser() {
+    public String updateUser() {
         Logger.getLogger(getClass().getName()).log(Level.INFO, "Atualizando: " + getSelectedUser().toString());
         getDao().update(getSelectedUser());
+        return null;
     }
     
     public void delete(User user) {
@@ -117,7 +118,7 @@ public class AdminMB implements Serializable {
     }
     
     private void createInitialUsers() {
-        User admin = new User("Jonathan Nobre", "nobre.jonathan@catolica.edu.br", "buymeacoffe", Role.ROLE_ADMIN);
+        User admin = new User("Jonathan Nobre", "nobre.jonathan", "iamroot", Role.ROLE_ADMIN);
         User user = new User("Jeysel Martins", "jeyselmartins@gmail.com", "facanacaveira", Role.ROLE_USER);
         
         getDao().save(admin);
